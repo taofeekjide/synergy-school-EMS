@@ -20,11 +20,6 @@ export function EmployeeButtons({ _id }) {
         <FaEdit />
         Edit
       </button>
-
-      <button className="flex items-center gap-1 px-3 py-1 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 transition cursor-pointer">
-        <FaSuitcase />
-        Leave
-      </button>
     </div>
   );
 }

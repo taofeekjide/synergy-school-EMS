@@ -6,7 +6,7 @@ export default function AdminCard({
   number,
   color = "bg-blue-600",
 }) {
-  const formattedNumber = number.toLocaleString();
+  const formattedNumber = number?.toLocaleString?.() ?? "0";
 
   return (
     <div className="flex items-center gap-4 bg-white shadow-md p-5 rounded-2xl border border-gray-100 hover:shadow-lg transition">

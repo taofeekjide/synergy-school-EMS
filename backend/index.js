@@ -9,6 +9,7 @@ import departmentRouter from "./routes/department.js";
 import employeeRouter from "./routes/employee.js";
 import leaveRouter from "./routes/leave.js";
 import publicRoute from "./routes/publicRoute.js";
+import dashboardRouter from './routes/dashboard.js'
 
 const PORT = process.env.PORT;
 
@@ -22,6 +23,7 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/leaves", leaveRouter);
 app.use("/uploads", express.static("public/uploads"));
 app.use("/api/public", publicRoute);
+app.use("/api/dashboard", dashboardRouter);
 
 //db connection
 connectToDatabase();

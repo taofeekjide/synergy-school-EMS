@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminCard from "./AdminCard";
-import { FaBuilding, FaCheckCircle, FaFileAlt, FaHourglassHalf, FaMoneyBill, FaTimesCircle, FaUsers } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaCheckCircle,
+  FaFileAlt,
+  FaHourglassHalf,
+  FaMoneyBill,
+  FaTimesCircle,
+  FaUsers,
+} from "react-icons/fa";
+import axios from "axios";
 
 export default function AdminSummary() {
+  const [summary, setSummary] = useState(null);
+
+  useEffect(() => {
+    async function fetchSummary() {
+      try {
+        const summary = await axios.get(
+          "http://localhost:1234/api/dashboard/summary",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        setSummary(summary);
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.error);
+        }
+      }
+    }
+    fetchSummary();
+  }, []);
+
+  if (!summary) {
+    return <div>Loading....</div>;
+  }
+
   return (
     <div className="p-6">
       <h3 className="text-2xl font-semibold mb-6 text-gray-800">Overview</h3>
@@ -10,19 +46,19 @@ export default function AdminSummary() {
         <AdminCard
           icon={<FaUsers className="text-white text-2xl" />}
           text="Total Employees"
-          number={20}
+          number={summary.data.totalEmployees}
           color="bg-blue-600"
         />
         <AdminCard
           icon={<FaBuilding className="text-white text-2xl" />}
           text="Total Departments"
-          number={20}
+          number={summary.data.totalDepartments}
           color="bg-yellow-500"
         />
         <AdminCard
           icon={<FaMoneyBill className="text-white text-2xl" />}
           text="Monthly Pay"
-          number={1000000}
+          number={summary.data.totalSalary}
           color="bg-green-600"
         />
       </div>
@@ -34,25 +70,25 @@ export default function AdminSummary() {
           <AdminCard
             icon={<FaFileAlt className="text-white text-2xl" />}
             text="Leave Applied"
-            number={30}
+            number={summary.data.leaveSummary.leaveAppliedFor}
             color="bg-blue-600"
           />
           <AdminCard
             icon={<FaCheckCircle className="text-white text-2xl" />}
             text="Leave Approved"
-            number={18}
+            number={summary.data.leaveSummary.approved}
             color="bg-green-600"
           />
           <AdminCard
             icon={<FaHourglassHalf className="text-white text-2xl" />}
             text="Leave Pending"
-            number={8}
+            number={summary.data.leaveSummary.pending}
             color="bg-yellow-500"
           />
           <AdminCard
             icon={<FaTimesCircle className="text-white text-2xl" />}
             text="Leave Rejected"
-            number={4}
+            number={summary.data.leaveSummary.rejected}
             color="bg-red-600"
           />
         </div>
