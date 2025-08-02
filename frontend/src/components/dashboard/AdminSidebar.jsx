@@ -65,18 +65,6 @@ export default function AdminSidebar() {
             <FaCalendarAlt />
             <span>Leaves</span>
           </NavLink>
-
-          <NavLink
-            to={"/admin/settings"}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
-                isActive ? "bg-gray-700" : ""
-              }`
-            }
-          >
-            <FaCog />
-            <span>Settings</span>
-          </NavLink>
         </nav>
       </div>
     </div>

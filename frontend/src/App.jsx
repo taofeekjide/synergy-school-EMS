@@ -16,7 +16,6 @@ import EditEmployee from "./components/employees/Edit";
 import EmployeeSummaryCard from "./components/EmployeeDashboard/Summary";
 import List from "./components/leave/List";
 import Add from "./components/leave/Add";
-import Setting from "./components/EmployeeDashboard/Setting";
 import LeavesTable from "./components/leave/LeavesTable";
 import LeaveDetail from "./components/leave/LeaveDetail";
 import PublicDemo from "./pages/PublicDemo";
@@ -93,7 +92,6 @@ function App() {
           />
           <Route path="/employee/dashboard/leaves" element={<List />} />
           <Route path="/employee/dashboard/add-leave" element={<Add />} />
-          <Route path="/employee/dashboard/setting" element={<Setting />} />
         </Route>
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<NotFound />} />
