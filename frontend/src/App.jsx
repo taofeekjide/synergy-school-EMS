@@ -29,7 +29,7 @@ function App() {
     <>
       <Routes>
         <Route path="/public-demo" element={<PublicDemo />} />
-        <Route path="/landing-page" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/admin/dashboard"
