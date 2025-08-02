@@ -35,7 +35,7 @@ export default function ViewEmployee() {
       {employee ? (
         <div className="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            My Details
+            Details
           </h2>
 
           <div className="flex flex-col md:flex-row gap-6 items-start">
@@ -80,6 +80,14 @@ export default function ViewEmployee() {
                 </p>
                 <p className="text-base font-semibold text-gray-800">
                   {employee.designation}
+                </p>
+              </div>
+              <div>
+                <p className="font-medium text-gray-500">
+                  Salary:
+                </p>
+                <p className="text-base font-semibold text-gray-800">
+                  {employee.salary.toLocaleString()}
                 </p>
               </div>
             </div>
