@@ -119,27 +119,27 @@ export default function PublicDemo() {
             <h2 className="text-2xl font-semibold text-gray-800">
               📝 Leave Requests
             </h2>
-            <div className="flex gap-2 mt-4 mb-6 flex-wrap">
-              {["All", "Pending", "Approved", "Rejected"].map((status) => (
-                <button
-                  key={status}
-                  onClick={() => setFilter(status)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    filter === status
-                      ? "bg-blue-700 text-white"
-                      : status === "Pending"
-                      ? "bg-yellow-500 text-white hover:bg-yellow-600"
-                      : status === "Approved"
-                      ? "bg-green-600 text-white hover:bg-green-700"
-                      : status === "Rejected"
-                      ? "bg-red-600 text-white hover:bg-red-700"
-                      : "bg-gray-300 text-gray-800 hover:bg-gray-400"
-                  }`}
-                >
-                  {status}
-                </button>
-              ))}
-            </div>
+          </div>
+          <div className="flex gap-2 mt-4 mb-6 flex-wrap">
+            {["All", "Pending", "Approved", "Rejected"].map((status) => (
+              <button
+                key={status}
+                onClick={() => setFilter(status)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  filter === status
+                    ? "bg-blue-700 text-white"
+                    : status === "Pending"
+                    ? "bg-yellow-500 text-white hover:bg-yellow-600"
+                    : status === "Approved"
+                    ? "bg-green-600 text-white hover:bg-green-700"
+                    : status === "Rejected"
+                    ? "bg-red-600 text-white hover:bg-red-700"
+                    : "bg-gray-300 text-gray-800 hover:bg-gray-400"
+                }`}
+              >
+                {status}
+              </button>
+            ))}
           </div>
           <DataTable
             columns={leaveColumns}
