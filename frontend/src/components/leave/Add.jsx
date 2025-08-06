@@ -42,7 +42,7 @@ export default function Add() {
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md">
+    <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md mt-7">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         Request for a Leave
       </h2>

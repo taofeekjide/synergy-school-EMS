@@ -45,21 +45,21 @@ export default function LandingPage() {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={() => navigate("/login")}
-            className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition-all"
+            className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition-all w-full sm:w-auto whitespace-nowrap"
           >
             Login (Employees Only)
           </button>
 
           <button
             onClick={() => navigate("/public-demo")}
-            className="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl shadow-md hover:bg-gray-300 transition-all"
+            className="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl shadow-md hover:bg-gray-300 transition-all w-full sm:w-auto whitespace-nowrap"
           >
             View Employees & Leave Requests
           </button>
 
           <button
             onClick={handleDemoLogin}
-            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow"
+            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
           >
             Try as Demo Employee
           </button>

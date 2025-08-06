@@ -33,7 +33,7 @@ export default function ViewEmployee() {
   return (
     <>
       {employee ? (
-        <div className="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+        <div className="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-md mt-10">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Details
           </h2>

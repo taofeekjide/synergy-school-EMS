@@ -5,6 +5,7 @@ import { UserContext } from "../../context/authContext";
 
 export default function List() {
   const [leaves, setLeaves] = useState([]);
+  const [filter, setFilter] = useState("All"); // default shows all leave requests
 
   const { user } = useContext(UserContext);
 
@@ -19,7 +20,10 @@ export default function List() {
         }
       );
       if (response.data.success) {
-        setLeaves(response.data.leaves);
+        const sortedLeaves = response.data.leaves.sort(
+          (a, b) => new Date(b.appliedAt) - new Date(a.appliedAt)
+        );
+        setLeaves(sortedLeaves);
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
@@ -31,6 +35,12 @@ export default function List() {
   useEffect(() => {
     fetchLeaves();
   }, []);
+
+  // Filtered leaves to filter based on the status clicked
+  const filteredLeaves =
+    filter === "All"
+      ? leaves
+      : leaves.filter((leave) => leave.status === filter);
 
   let sno = 1;
 
@@ -46,8 +56,8 @@ export default function List() {
         </p>
       </div>
 
-      {/* Search and Add */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      {/* Add New */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
         <Link
           to="/employee/dashboard/add-leave"
           className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 transition-all shadow"
@@ -55,6 +65,31 @@ export default function List() {
           + Request New Leave
         </Link>
       </div>
+
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap gap-3 mb-4">
+        {["All", "Pending", "Approved", "Rejected"].map((status) => (
+          <button
+            key={status}
+            onClick={() => setFilter(status)}
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+              filter === status
+                ? "bg-blue-700 text-white"
+                : status === "Pending"
+                ? "bg-yellow-500 text-white hover:bg-yellow-600"
+                : status === "Approved"
+                ? "bg-green-600 text-white hover:bg-green-700"
+                : status === "Rejected"
+                ? "bg-red-600 text-white hover:bg-red-700"
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            }`}
+          >
+            {status}
+          </button>
+        ))}
+      </div>
+
+      {/* Leave Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border border-gray-200 rounded-lg">
           <thead className="bg-gray-100 text-gray-700 text-sm font-semibold">
@@ -68,28 +103,37 @@ export default function List() {
             </tr>
           </thead>
           <tbody className="text-sm text-gray-800">
-            {leaves.map((leave) => (
-              <tr key={leave._id} className="hover:bg-gray-50">
-                <td className="px-4 py-2 border-b text-center">{sno++}</td>
-                <td className="px-4 py-2 border-b text-center">
-                  {leave.leaveType}
-                </td>
-                <td className="px-4 py-2 border-b text-center">
-                  {new Date(leave.startDate).toLocaleDateString()}
-                </td>
-                <td className="px-4 py-2 border-b text-center">
-                  {new Date(leave.endDate).toLocaleDateString()}
-                </td>
-                <td className="px-4 py-2 border-b text-center">
-                  {leave.reason}
-                </td>
-                <td className="px-4 py-2 border-b text-center">
-                  <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded-full">
-                    {leave.status}
-                  </span>
+            {filteredLeaves.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-6 text-gray-500">
+                  No {filter !== "All" ? filter.toLowerCase() : ""} leave
+                  requests found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              filteredLeaves.map((leave) => (
+                <tr key={leave._id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2 border-b text-center">{sno++}</td>
+                  <td className="px-4 py-2 border-b text-center">
+                    {leave.leaveType}
+                  </td>
+                  <td className="px-4 py-2 border-b text-center">
+                    {new Date(leave.startDate).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2 border-b text-center">
+                    {new Date(leave.endDate).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2 border-b text-center">
+                    {leave.reason}
+                  </td>
+                  <td className="px-4 py-2 border-b text-center">
+                    <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded-full">
+                      {leave.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
