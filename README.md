@@ -1,11 +1,11 @@
 # Synergy School Employee Management System
 
-A modern web-based application designed to help schools efficiently manage employee data, departments, leave requests, and internal operations. Built with React and Tailwind CSS, this system provides role-based dashboards and a secure, intuitive interface for both administrators and employees.
+A modern web-based application designed to help schools efficiently manage employee data, departments, leave requests, and internal operations. Built with React and Tailwind CSS, Node.js and MongoDB, this system provides role-based dashboards and a secure, intuitive interface for both administrators and employees.
 
 ## Live Demo
 
 [View Live Application](https://synergy-school-ems-1.onrender.com/)  
-[PDF Presentation](https://github.com/taofeekjide/synergy-school-EMS/blob/master/presentation/Synergy%20School%20Presentation.pdf)
+[PDF Presentation](http://eu.docworkspace.com/d/slAKo8vu9AueSycQG?sa=601.1074)
 
 ## Features
 
@@ -17,7 +17,7 @@ A modern web-based application designed to help schools efficiently manage emplo
 - Unit Testing with Jest
 - Public Demo Mode (view demo employee records)
 - Protected Routes via Context API
-- Admin Analytics Summary Cards
+- Admin Dynamic Analytics Summary Cards
 
 ## Roles & Access
 
@@ -28,22 +28,23 @@ A modern web-based application designed to help schools efficiently manage emplo
 
 **Employee**
 - View personal profile & department info
-- Apply for leave
+- View & apply for leaves
 
 **Public**
-- Access demo account to test features (view only)
+- Access demo account to test features
 
 ## Authentication
 
 - JWT-based login system  
 - Only admins can add employees — no public signup  
-- Demo employee credentials available for public viewing
+- Demo employee credentials available for public use
 
 ## Tech Stack
 
 **Frontend:**
 - React
 - Tailwind CSS
+- Font Awesome icons
 - React Router
 - Context API
 - Axios
