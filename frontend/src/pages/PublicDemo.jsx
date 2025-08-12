@@ -6,6 +6,7 @@ export default function PublicDemo() {
   const [employees, setEmployees] = useState([]);
   const [leaves, setLeaves] = useState([]);
   const [filter, setFilter] = useState("All");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchEmployees();
@@ -28,6 +29,7 @@ export default function PublicDemo() {
           startDate: new Date(emp.startDate).toLocaleDateString(),
         }));
         setEmployees(data);
+        setLoading(false);
       }
     } catch (err) {
       console.error("Error fetching employees:", err);
@@ -51,6 +53,7 @@ export default function PublicDemo() {
           status: leave.status,
         }));
         setLeaves(data);
+        setLoading(false);
       }
     } catch (err) {
       console.error("Error fetching leaves:", err);
@@ -101,13 +104,17 @@ export default function PublicDemo() {
               📋 Employee Records
             </h2>
           </div>
-          <DataTable
-            columns={employeeColumns}
-            data={employees}
-            pagination
-            highlightOnHover
-            striped
-          />
+          {loading ? (
+            <div>Loading, Please wait...</div>
+          ) : (
+            <DataTable
+              columns={employeeColumns}
+              data={employees}
+              pagination
+              highlightOnHover
+              striped
+            />
+          )}
         </div>
       </div>
 
@@ -139,13 +146,17 @@ export default function PublicDemo() {
               </button>
             ))}
           </div>
-          <DataTable
-            columns={leaveColumns}
-            data={filteredLeaves}
-            pagination
-            highlightOnHover
-            striped
-          />
+          {loading ? (
+            <div>Loading, Please wait...</div>
+          ) : (
+            <DataTable
+              columns={leaveColumns}
+              data={filteredLeaves}
+              pagination
+              highlightOnHover
+              striped
+            />
+          )}
         </div>
       </div>
     </div>
