@@ -18,7 +18,7 @@ export default function AdminSummary() {
     async function fetchSummary() {
       try {
         const summary = await axios.get(
-          "http://localhost:1234/api/dashboard/summary",
+          `${import.meta.env.VITE_API_URL}/api/dashboard/summary`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
