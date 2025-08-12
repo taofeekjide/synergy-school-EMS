@@ -8,11 +8,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const { login } = useContext(UserContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -33,6 +35,7 @@ export default function Login() {
     } catch (error) {
       if (error.response && error.response.data.success === false) {
         setError(error.response.data.message);
+        setLoading(false);
       } else {
         setError("An unexpected error occurred. Please try again later.");
       }
@@ -83,12 +86,16 @@ export default function Login() {
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
-            >
-              Login
-            </button>
+            {loading ? (
+              <div className="text-center">Loading, please wait...</div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 cursor-pointer"
+              >
+                Login
+              </button>
+            )}
           </form>
         </div>
       </div>
