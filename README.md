@@ -5,7 +5,7 @@ A modern web-based application designed to help schools efficiently manage emplo
 ## Live Demo
 
 [View Live Application](https://synergy-school-ems-1.onrender.com/)  
-[PDF Presentation](https://github.com/taofeekjide/synergy-school-EMS/blob/master/presentation/Synergy%20School%20Presentation.pdf)
+[PDF Presentation](http://eu.docworkspace.com/d/slAKo8vu9AueSycQG?sa=601.1074)
 
 ## Features
 
