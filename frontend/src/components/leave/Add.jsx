@@ -47,7 +47,6 @@ export default function Add() {
         Request for a Leave
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Leave Type */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Leave Type
@@ -70,7 +69,6 @@ export default function Add() {
           </select>
         </div>
 
-        {/* Date Range */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -98,7 +96,6 @@ export default function Add() {
           </div>
         </div>
 
-        {/* Description */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Reason / Description
@@ -113,7 +110,6 @@ export default function Add() {
           />
         </div>
 
-        {/* Submit Button */}
         <div>
           <button
             type="submit"

@@ -36,7 +36,7 @@ export default function LeaveDetail() {
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_API_URL}/api/leave/${id}`,
-        {status},
+        { status },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -62,16 +62,16 @@ export default function LeaveDetail() {
           </h2>
 
           <div className="flex flex-col md:flex-row gap-6 items-start">
-            {/* Profile Image */}
             <div className="w-40 h-40 flex-shrink-0 overflow-hidden rounded-xl border border-gray-300">
               <img
-                src={`${import.meta.env.VITE_API_URL}/uploads/${leave.employeeId.userId.profileImage}`}
+                src={`${import.meta.env.VITE_API_URL}/uploads/${
+                  leave.employeeId.userId.profileImage
+                }`}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Employee Info */}
             <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
               <div>
                 <p className="font-medium text-gray-500">Name:</p>

@@ -58,7 +58,6 @@ export default function EmployeeList() {
         <div>Loading...</div>
       ) : (
         <div className="p-6 bg-white rounded-2xl shadow-md">
-          {/* Header */}
           <div className="mb-6">
             <h3 className="text-3xl font-bold text-gray-800 tracking-tight">
               Manage Employees
@@ -68,7 +67,6 @@ export default function EmployeeList() {
             </p>
           </div>
 
-          {/* Search and Add */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             <div className="w-full sm:w-1/2">
               <input

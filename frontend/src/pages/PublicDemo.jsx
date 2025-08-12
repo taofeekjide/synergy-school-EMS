@@ -94,7 +94,6 @@ export default function PublicDemo() {
         </p>
       </div>
 
-      {/* Employee Records Section */}
       <div className="mb-12">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
@@ -112,7 +111,6 @@ export default function PublicDemo() {
         </div>
       </div>
 
-      {/* Leave Requests Section */}
       <div>
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">

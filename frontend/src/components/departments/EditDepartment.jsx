@@ -74,7 +74,6 @@ export default function EditDepartment() {
           </h3>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
-            {/* Department Name */}
             <div>
               <label
                 htmlFor="name"
@@ -94,7 +93,6 @@ export default function EditDepartment() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label
                 htmlFor="description"
@@ -113,7 +111,6 @@ export default function EditDepartment() {
               ></textarea>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"

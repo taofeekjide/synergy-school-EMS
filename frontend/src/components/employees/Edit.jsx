@@ -102,7 +102,6 @@ export default function EditEmployee() {
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
             onSubmit={handleSubmit}
           >
-            {/* Full Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Full Name
@@ -118,7 +117,6 @@ export default function EditEmployee() {
               />
             </div>
 
-            {/* Start Date */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date
@@ -133,7 +131,6 @@ export default function EditEmployee() {
               />
             </div>
 
-            {/* Designation */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Designation
@@ -149,7 +146,6 @@ export default function EditEmployee() {
               />
             </div>
 
-            {/* Department (Dropdown) */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Department
@@ -173,7 +169,6 @@ export default function EditEmployee() {
               </select>
             </div>
 
-            {/* Salary */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Salary (₦)
@@ -189,7 +184,6 @@ export default function EditEmployee() {
               />
             </div>
 
-            {/* Submit Button */}
             <div className="sm:col-span-2 mt-4">
               <button
                 type="submit"

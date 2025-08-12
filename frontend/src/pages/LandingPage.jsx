@@ -19,10 +19,9 @@ export default function LandingPage() {
       );
 
       if (response.data.success) {
-        login(response.data.user); // from your context
+        login(response.data.user);
         localStorage.setItem("token", response.data.token);
 
-        // Redirect to employee dashboard
         navigate("/employee/dashboard");
       }
     } catch (error) {

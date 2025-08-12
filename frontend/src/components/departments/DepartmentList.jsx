@@ -10,17 +10,10 @@ export default function DepartmentList() {
   const [loading, setLoading] = useState(false);
   const [searchedDepartmemnts, setSearchedDepartmemnts] = useState([]);
 
-  // async function onDeleteDepartment(id) {
-  //   await fetchDepartments()
-  //   const data = departments.filter((dep) => dep._id !== id);
-  //   setDepartments(data);
-  // }
   async function onDeleteDepartment(id) {
     try {
-      // Optimistic update (optional): remove from UI first
       setDepartments((prev) => prev.filter((dep) => dep._id !== id));
 
-      // Then refresh to be sure backend is in sync
       await fetchDepartments();
     } catch (error) {
       console.error("Failed to refresh departments", error);
@@ -30,11 +23,14 @@ export default function DepartmentList() {
   async function fetchDepartments() {
     setLoading(true);
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/department`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/department`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       if (response.data.success) {
         let sno = 1;
         const data = await response.data.departments.map((dep) => ({
@@ -77,14 +73,12 @@ export default function DepartmentList() {
         <div>Loading....</div>
       ) : (
         <div className="p-6 bg-white shadow-md rounded-xl">
-          {/* Header */}
           <div className="mb-6">
             <h3 className="text-2xl font-semibold text-gray-800">
               Manage Departments
             </h3>
           </div>
 
-          {/* Search + Add */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             <input
               type="text"
@@ -101,7 +95,11 @@ export default function DepartmentList() {
             </Link>
           </div>
           <div className="mt-5">
-            <DataTable columns={columns} data={searchedDepartmemnts} pagination />
+            <DataTable
+              columns={columns}
+              data={searchedDepartmemnts}
+              pagination
+            />
           </div>
         </div>
       )}

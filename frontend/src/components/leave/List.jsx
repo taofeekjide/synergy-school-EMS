@@ -5,7 +5,7 @@ import { UserContext } from "../../context/authContext";
 
 export default function List() {
   const [leaves, setLeaves] = useState([]);
-  const [filter, setFilter] = useState("All"); // default shows all leave requests
+  const [filter, setFilter] = useState("All"); 
 
   const { user } = useContext(UserContext);
 
@@ -36,7 +36,6 @@ export default function List() {
     fetchLeaves();
   }, []);
 
-  // Filtered leaves to filter based on the status clicked
   const filteredLeaves =
     filter === "All"
       ? leaves
@@ -46,7 +45,6 @@ export default function List() {
 
   return (
     <div className="p-6 bg-white rounded-2xl shadow-md">
-      {/* Header */}
       <div className="mb-6">
         <h3 className="text-3xl font-bold text-gray-800 tracking-tight">
           Manage leaves
@@ -56,7 +54,6 @@ export default function List() {
         </p>
       </div>
 
-      {/* Add New */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
         <Link
           to="/employee/dashboard/add-leave"
@@ -66,7 +63,6 @@ export default function List() {
         </Link>
       </div>
 
-      {/* Filter Buttons */}
       <div className="flex flex-wrap gap-3 mb-4">
         {["All", "Pending", "Approved", "Rejected"].map((status) => (
           <button
@@ -89,7 +85,6 @@ export default function List() {
         ))}
       </div>
 
-      {/* Leave Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border border-gray-200 rounded-lg">
           <thead className="bg-gray-100 text-gray-700 text-sm font-semibold">

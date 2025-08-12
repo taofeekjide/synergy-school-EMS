@@ -39,7 +39,6 @@ export default function ViewEmployee() {
           </h2>
 
           <div className="flex flex-col md:flex-row gap-6 items-start">
-            {/* Profile Image */}
             <div className="w-40 h-40 flex-shrink-0 overflow-hidden rounded-xl border border-gray-300">
               <img
                 src={`${import.meta.env.VITE_API_URL}/uploads/${employee.userId.profileImage}`}
@@ -48,7 +47,6 @@ export default function ViewEmployee() {
               />
             </div>
 
-            {/* Employee Info */}
             <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
               <div>
                 <p className="font-medium text-gray-500">Name:</p>

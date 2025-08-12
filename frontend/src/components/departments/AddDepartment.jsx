@@ -17,7 +17,6 @@ export default function AddDepartment() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // Here you would typically send the department data to your backend
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/department/add`,
@@ -47,7 +46,6 @@ export default function AddDepartment() {
       </h3>
 
       <form className="space-y-5" onSubmit={handleSubmit}>
-        {/* Department Name */}
         <div>
           <label
             htmlFor="name"
@@ -66,7 +64,6 @@ export default function AddDepartment() {
           />
         </div>
 
-        {/* Description */}
         <div>
           <label
             htmlFor="description"
@@ -84,7 +81,6 @@ export default function AddDepartment() {
           ></textarea>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"

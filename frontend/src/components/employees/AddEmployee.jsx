@@ -76,7 +76,6 @@ export default function AddEmployee() {
         className="grid grid-cols-1 sm:grid-cols-2 gap-6"
         onSubmit={handleSubmit}
       >
-        {/* Full Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Full Name
@@ -91,7 +90,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Email */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Email Address
@@ -106,7 +104,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Employee ID */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Employee ID
@@ -121,7 +118,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Start Date */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Start Date
@@ -135,7 +131,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Designation */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Designation
@@ -150,7 +145,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Department (Dropdown) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Department
@@ -173,7 +167,6 @@ export default function AddEmployee() {
           </select>
         </div>
 
-        {/* Salary */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Salary (₦)
@@ -188,7 +181,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Password */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Password
@@ -203,7 +195,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Position (Dropdown) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Role
@@ -223,7 +214,6 @@ export default function AddEmployee() {
           </select>
         </div>
 
-        {/* Image Upload */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Profile Image
@@ -238,7 +228,6 @@ export default function AddEmployee() {
           />
         </div>
 
-        {/* Submit Button */}
         <div className="sm:col-span-2 mt-4">
           <button
             type="submit"

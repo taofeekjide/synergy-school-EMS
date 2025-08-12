@@ -49,7 +49,6 @@ export default function LeavesTable() {
   return (
     <>
       <div className="bg-white p-6 rounded-xl shadow-md">
-        {/* Header */}
         <div className="mb-6">
           <h3 className="text-3xl font-extrabold text-gray-800 tracking-tight">
             Manage Leaves
@@ -59,7 +58,6 @@ export default function LeavesTable() {
           </p>
         </div>
 
-        {/* Status Filter Buttons */}
         <div className="flex flex-wrap gap-3">
           <button className="px-4 py-2 text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg transition-all">
             Pending

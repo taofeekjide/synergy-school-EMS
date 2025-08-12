@@ -14,7 +14,6 @@ export default function EmployeeSummaryCard() {
 
   return (
     <div className="flex justify-between items-center bg-white shadow-md p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-      {/* Left */}
       <div className="flex items-center gap-5">
         <div className="bg-blue-100 text-blue-600 p-4 rounded-xl text-2xl">
           <FaUser />
@@ -29,7 +28,6 @@ export default function EmployeeSummaryCard() {
         </div>
       </div>
 
-      {/* Right (Optional activity summary) */}
       <div className="text-right">
         <p className="text-xs text-gray-400 mt-1 italic">
           "Stay focused and productive today."
