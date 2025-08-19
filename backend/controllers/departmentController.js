@@ -78,7 +78,8 @@ export async function editDepartment(req, res) {
 export async function deleteDepartment(req, res) {
   try {
     const { id } = req.params;
-    const deletedDepartment = await Department.findByIdAndDelete({ _id: id });
+    const deletedDepartment = await Department.findById({ _id: id });
+    await deletedDepartment.deleteOne();
     return res.status(200).json({
       success: true,
       deletedDepartment,
