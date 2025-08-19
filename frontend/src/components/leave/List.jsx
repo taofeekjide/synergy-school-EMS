@@ -5,7 +5,8 @@ import { UserContext } from "../../context/authContext";
 
 export default function List() {
   const [leaves, setLeaves] = useState([]);
-  const [filter, setFilter] = useState("All"); 
+  const [filter, setFilter] = useState("All");
+  const [loading, setLoading] = useState(true);
 
   const { user } = useContext(UserContext);
 
@@ -23,6 +24,7 @@ export default function List() {
         const sortedLeaves = response.data.leaves.sort(
           (a, b) => new Date(b.appliedAt) - new Date(a.appliedAt)
         );
+        setLoading(false);
         setLeaves(sortedLeaves);
       }
     } catch (error) {
@@ -98,7 +100,9 @@ export default function List() {
             </tr>
           </thead>
           <tbody className="text-sm text-gray-800">
-            {filteredLeaves.length === 0 ? (
+            {loading ? (
+              <div>Loading, Please wait...</div>
+            ) : filteredLeaves.length === 0 ? (
               <tr>
                 <td colSpan="6" className="text-center py-6 text-gray-500">
                   No {filter !== "All" ? filter.toLowerCase() : ""} leave
