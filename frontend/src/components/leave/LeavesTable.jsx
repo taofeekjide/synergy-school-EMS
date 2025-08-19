@@ -89,8 +89,10 @@ export default function LeavesTable() {
         </div>
         {loading ? (
           <div>Loading, Please wait...</div>
-        ) : (
+        ) : leaves.length > 0 ? (
           <DataTable columns={leaveColumns} data={filteredLeaves} pagination />
+        ) : (
+          <div> No leaves Found </div>
         )}
       </div>
     </>
