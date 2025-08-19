@@ -8,6 +8,7 @@ export default function Add() {
   const [leave, setLeave] = useState({
     userId: user._id,
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ export default function Add() {
   }
 
   async function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -36,6 +38,7 @@ export default function Add() {
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
+        setLoading(false);
         alert(error.response.data.error);
       }
     }
@@ -111,12 +114,16 @@ export default function Add() {
         </div>
 
         <div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-all font-medium"
-          >
-            + Add Leave
-          </button>
+          {loading ? (
+            <div className="text-center">Loading, please wait...</div>
+          ) : (
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-all font-medium"
+            >
+              + Add Leave
+            </button>
+          )}
         </div>
       </form>
     </div>

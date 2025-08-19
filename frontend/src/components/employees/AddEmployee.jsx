@@ -7,6 +7,7 @@ export default function AddEmployee() {
   const [departments, setDepartments] = useState([]);
 
   const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,6 +36,7 @@ export default function AddEmployee() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
 
     const formDataObj = new FormData();
 
@@ -58,8 +60,9 @@ export default function AddEmployee() {
       }
     } catch (error) {
       if (error.response) {
-        console.error("Backend error:", error.response.data); // 👈 Add this
+        console.error("Backend error:", error.response.data);
         alert(error.response.data.error);
+        setLoading(false);
       } else {
         console.error("Unexpected error:", error.message);
       }
@@ -228,14 +231,18 @@ export default function AddEmployee() {
           />
         </div>
 
-        <div className="sm:col-span-2 mt-4">
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-all font-medium"
-          >
-            Add Employee
-          </button>
-        </div>
+        {loading ? (
+          <div className="text-center">Loading...</div>
+        ) : (
+          <div className="sm:col-span-2 mt-4">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-all font-medium"
+            >
+              Add Employee
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

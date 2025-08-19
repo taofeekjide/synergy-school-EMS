@@ -82,7 +82,7 @@ export default function EditEmployee() {
       }
     } catch (error) {
       if (error.response) {
-        console.error("Backend error:", error.response.data); // 👈 Add this
+        console.error("Backend error:", error.response.data);
         alert(error.response.data.error);
       } else {
         console.error("Unexpected error:", error.message);

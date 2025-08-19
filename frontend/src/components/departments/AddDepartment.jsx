@@ -7,6 +7,7 @@ export default function AddDepartment() {
     dep_name: "",
     description: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ export default function AddDepartment() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/department/add`,
@@ -27,14 +29,14 @@ export default function AddDepartment() {
           },
         }
       );
-      if(response.data.success) {
+      if (response.data.success) {
         alert("Department added successfully!");
-        navigate('/admin/dashboard/departments');
-        
+        navigate("/admin/dashboard/departments");
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
         alert(error.response.data.error);
+        setLoading(false);
       }
     }
   }
@@ -81,12 +83,16 @@ export default function AddDepartment() {
           ></textarea>
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-        >
-          Add Department
-        </button>
+        {loading ? (
+          <div className="text-center">Loading...</div>
+        ) : (
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          >
+            Add Department
+          </button>
+        )}
       </form>
     </div>
   );
