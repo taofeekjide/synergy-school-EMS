@@ -64,30 +64,30 @@ export default function AdminSummary() {
       </div>
       <div className="mt-10">
         <h4 className="text-xl font-semibold mb-4 text-gray-800">
-          Leave Details
+          Leaves Details
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <AdminCard
             icon={<FaFileAlt className="text-white text-2xl" />}
-            text="Leave Applied"
+            text="Leaves Applied"
             number={summary.data.leaveSummary.leaveAppliedFor}
             color="bg-blue-600"
           />
           <AdminCard
             icon={<FaCheckCircle className="text-white text-2xl" />}
-            text="Leave Approved"
+            text="Leaves Approved"
             number={summary.data.leaveSummary.approved}
             color="bg-green-600"
           />
           <AdminCard
             icon={<FaHourglassHalf className="text-white text-2xl" />}
-            text="Leave Pending"
+            text="Leaves Pending"
             number={summary.data.leaveSummary.pending}
             color="bg-yellow-500"
           />
           <AdminCard
             icon={<FaTimesCircle className="text-white text-2xl" />}
-            text="Leave Rejected"
+            text="Leaves Rejected"
             number={summary.data.leaveSummary.rejected}
             color="bg-red-600"
           />

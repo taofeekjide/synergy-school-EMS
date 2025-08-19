@@ -6,6 +6,13 @@ import { LeaveButtons } from "../../utils/Leavehelper";
 
 export default function LeavesTable() {
   const [leaves, setLeaves] = useState([]);
+  const [filter, setFilter] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  const filteredLeaves =
+    filter === "All"
+      ? leaves
+      : leaves.filter((leave) => leave.status === filter);
 
   async function fetchLeaves() {
     try {
@@ -33,6 +40,7 @@ export default function LeavesTable() {
           status: leave.status,
           action: <LeaveButtons Id={leave._id} />,
         }));
+        setLoading(false);
         setLeaves(data);
       }
     } catch (error) {
@@ -58,23 +66,31 @@ export default function LeavesTable() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          <button className="px-4 py-2 text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg transition-all">
-            Pending
-          </button>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-all">
-            Approved
-          </button>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg transition-all">
-            Rejected
-          </button>
+        <div className="flex gap-2 mt-4 mb-6 flex-wrap">
+          {["All", "Pending", "Approved", "Rejected"].map((status) => (
+            <button
+              key={status}
+              onClick={() => setFilter(status)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                filter === status
+                  ? "bg-blue-700 text-white"
+                  : status === "Pending"
+                  ? "bg-yellow-500 text-white hover:bg-yellow-600"
+                  : status === "Approved"
+                  ? "bg-green-600 text-white hover:bg-green-700"
+                  : status === "Rejected"
+                  ? "bg-red-600 text-white hover:bg-red-700"
+                  : "bg-gray-300 text-gray-800 hover:bg-gray-400"
+              }`}
+            >
+              {status}
+            </button>
+          ))}
         </div>
-        {leaves.length > 0 ? (
-          <DataTable columns={leaveColumns} data={leaves} pagination />
+        {loading ? (
+          <div>Loading, Please wait...</div>
         ) : (
-          <div className="text-gray-500 text-sm mt-4">
-            No leave records found.
-          </div>
+          <DataTable columns={leaveColumns} data={filteredLeaves} pagination />
         )}
       </div>
     </>
