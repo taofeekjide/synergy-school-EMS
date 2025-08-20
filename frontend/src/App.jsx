@@ -18,16 +18,16 @@ import List from "./components/leave/List";
 import Add from "./components/leave/Add";
 import LeavesTable from "./components/leave/LeavesTable";
 import LeaveDetail from "./components/leave/LeaveDetail";
-import PublicDemo from "./pages/PublicDemo";
+import PublicDemo from "./pages/AllEmployeesList";
 import LandingPage from "./pages/LandingPage";
 import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
+import AllLeavesRecords from "./pages/AllLeavesRecords";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/public-demo" element={<PublicDemo />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -66,14 +66,8 @@ function App() {
             path="/admin/dashboard/employee/edit/:id"
             element={<EditEmployee />}
           />
-          <Route
-            path="/admin/dashboard/leaves"
-            element={<LeavesTable />}
-          />
-          <Route
-            path="/admin/dashboard/leaves/:id"
-            element={<LeaveDetail />}
-          />
+          <Route path="/admin/dashboard/leaves" element={<LeavesTable />} />
+          <Route path="/admin/dashboard/leaves/:id" element={<LeaveDetail />} />
         </Route>
         <Route
           path="/employee/dashboard"
@@ -91,7 +85,15 @@ function App() {
             element={<ViewEmployee />}
           />
           <Route path="/employee/dashboard/leaves" element={<List />} />
+          <Route
+            path="/employee/dashboard/employees-list"
+            element={<PublicDemo />}
+          />
           <Route path="/employee/dashboard/add-leave" element={<Add />} />
+          <Route
+            path="/employee/dashboard/employees-leaves-list"
+            element={<AllLeavesRecords />}
+          />
         </Route>
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<NotFound />} />

@@ -11,7 +11,7 @@ import {
 
 export default function AdminSidebar() {
   return (
-    <div className="w-40 h-screen bg-gray-800 text-white flex flex-col p-4">
+    <div className="h-screen bg-gray-800 text-white flex flex-col p-4">
       <div className="mb-8">
         <h3 className="text-xl font-bold">Employee MS</h3>
       </div>

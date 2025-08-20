@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { FaCog, FaRegBuilding, FaTachometerAlt, FaUser } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaCog,
+  FaRegBuilding,
+  FaTachometerAlt,
+  FaUser,
+  FaUsers,
+} from "react-icons/fa";
 import { UserContext } from "../../context/authContext";
 
 export default function AdminSidebar() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="w-40 h-screen bg-gray-800 text-white flex flex-col p-4">
+    <div className="h-screen bg-gray-800 text-white flex flex-col p-4">
       <div className="mb-8">
         <h3 className="text-xl font-bold">Employee MS</h3>
       </div>
@@ -47,7 +54,31 @@ export default function AdminSidebar() {
             }
           >
             <FaRegBuilding />
-            <span>Leaves</span>
+            <span>Personal Leaves</span>
+          </NavLink>
+
+          <NavLink
+            to={"/employee/dashboard/employees-list"}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaUsers />
+            <span>All Employees</span>
+          </NavLink>
+
+          <NavLink
+            to={"/employee/dashboard/employees-leaves-list"}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaBuilding />
+            <span>All Employees Leaves</span>
           </NavLink>
         </nav>
       </div>

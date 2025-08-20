@@ -50,13 +50,6 @@ export default function LandingPage() {
           </button>
 
           <button
-            onClick={() => navigate("/public-demo")}
-            className="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl shadow-md hover:bg-gray-300 transition-all w-full sm:w-auto whitespace-nowrap"
-          >
-            View Employees & Leave Requests
-          </button>
-
-          <button
             onClick={handleDemoLogin}
             className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
           >
