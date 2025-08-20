@@ -14,13 +14,10 @@ describe("AdminCard", () => {
       />
     );
 
-    // Text content
     expect(screen.getByText("Employees")).toBeInTheDocument();
 
-    // Formatted number
     expect(screen.getByText("1,500")).toBeInTheDocument();
 
-    // Icon should be present
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
 
@@ -34,7 +31,6 @@ describe("AdminCard", () => {
       />
     );
 
-    // Look for the div with the green background
     const coloredDiv = container.querySelector(".bg-green-600");
     expect(coloredDiv).toBeInTheDocument();
   });
