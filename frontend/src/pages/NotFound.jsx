@@ -15,7 +15,7 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="text-gray-600 mb-8">
-          The page you’re looking for doesn’t exist or may have been moved.
+          The page you're looking for doesn't exist or may have been moved.
         </p>
 
         <div className="flex flex-col sm:flex-row sm:justify-center gap-4">
@@ -24,12 +24,6 @@ export default function NotFound() {
             className="bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition"
           >
             Go to Login
-          </Link>
-          <Link
-            to="/public-demo"
-            className="text-blue-700 border border-blue-700 px-6 py-2 rounded-lg hover:bg-blue-100 transition"
-          >
-            Visit Public Demo
           </Link>
           <Link
             to="/"
