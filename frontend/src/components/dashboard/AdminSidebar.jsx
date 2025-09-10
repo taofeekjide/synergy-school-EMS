@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaCalendarAlt,
-  FaCog,
-  FaMoneyBill,
+  FaBars,
+  FaTimes,
   FaRegBuilding,
   FaTachometerAlt,
   FaUsers,
 } from "react-icons/fa";
 
 export default function AdminSidebar() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="h-screen bg-gray-800 text-white flex flex-col p-4">
-      <div className="mb-8">
-        <h3 className="text-xl font-bold">Employee MS</h3>
+      <div
+        className={`mb-8 flex justify-between items-center ${
+          isOpen ? "w-full" : "w-10"
+        } `}
+      >
+        <h3
+          className={`text-xl font-bold md:block ${
+            isOpen ? "block" : "hidden"
+          } `}
+        >
+          Employee MS
+        </h3>
+        <button className="block md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? (
+            <FaTimes size={24} className="cursor-pointer" />
+          ) : (
+            <FaBars size={24} className="cursor-pointer" />
+          )}
+        </button>
       </div>
       <div>
         <nav className="flex flex-col space-y-4">
@@ -27,7 +45,9 @@ export default function AdminSidebar() {
             end
           >
             <FaTachometerAlt />
-            <span>Dashboard</span>
+            <span className={`md:block ${isOpen ? "block" : "hidden"} `}>
+              Dashboard
+            </span>
           </NavLink>
 
           <NavLink
@@ -39,7 +59,9 @@ export default function AdminSidebar() {
             }
           >
             <FaUsers />
-            <span>Employees</span>
+            <span className={`md:block ${isOpen ? "block" : "hidden"} `}>
+              Employees
+            </span>
           </NavLink>
 
           <NavLink
@@ -51,7 +73,9 @@ export default function AdminSidebar() {
             }
           >
             <FaRegBuilding />
-            <span>Departments</span>
+            <span className={`md:block ${isOpen ? "block" : "hidden"} `}>
+              Departments
+            </span>
           </NavLink>
 
           <NavLink
@@ -63,7 +87,9 @@ export default function AdminSidebar() {
             }
           >
             <FaCalendarAlt />
-            <span>Leaves</span>
+            <span className={`md:block ${isOpen ? "block" : "hidden"} `}>
+              Leaves
+            </span>
           </NavLink>
         </nav>
       </div>
