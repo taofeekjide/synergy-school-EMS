@@ -8,7 +8,7 @@ export default function Add() {
   const [leave, setLeave] = useState({
     userId: user._id,
     userEmail: user.email,
-    userName: user.name
+    userName: user.name,
   });
   const [loading, setLoading] = useState(false);
 
@@ -37,6 +37,7 @@ export default function Add() {
         }
       );
       if (response.data.success) {
+        alert("Leave added successfully");
         //send notification
         try {
           const response1 = await axios.post(
