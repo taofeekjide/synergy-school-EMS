@@ -7,6 +7,8 @@ export default function Add() {
   const { user } = useContext(UserContext);
   const [leave, setLeave] = useState({
     userId: user._id,
+    userEmail: user.email,
+    userName: user.name
   });
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +25,7 @@ export default function Add() {
   async function handleSubmit(e) {
     setLoading(true);
     e.preventDefault();
+    //add leave
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/leave/add`,
@@ -34,6 +37,23 @@ export default function Add() {
         }
       );
       if (response.data.success) {
+        //send notification
+        try {
+          const response1 = await axios.post(
+            `${import.meta.env.VITE_API_URL}/send-email`,
+            leave,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          if (response1.data.success) {
+            alert("Leave notification sent successfully");
+          }
+        } catch (notifyError) {
+          alert("Failed to send notification: ", notifyError);
+        }
         navigate("/employee/dashboard/leaves");
       }
     } catch (error) {
@@ -41,6 +61,8 @@ export default function Add() {
         setLoading(false);
         alert(error.response.data.error);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
