@@ -35,7 +35,7 @@ export default function LeaveDetail() {
   async function changeStatus(id, status) {
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/leave/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/leave/update/${id}`,
         { status },
         {
           headers: {
@@ -44,11 +44,16 @@ export default function LeaveDetail() {
         }
       );
       if (response.data.success) {
+        alert(
+          response.data.message || "Leave status updated and notification sent!"
+        );
         navigate("/admin/dashboard/leaves");
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
         alert(error.response.data.error);
+      } else {
+        alert("Something went wrong while updating the leave");
       }
     }
   }

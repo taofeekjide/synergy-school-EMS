@@ -27,7 +27,8 @@ app.use("/api/public", publicRoute);
 app.use("/api/dashboard", dashboardRouter);
 
 app.post("/send-email", (req, res) => {
-  const { userId, userEmail, userName, leaveType, startDate, endDate, reason } = req.body;
+  const { userId, userEmail, userName, leaveType, startDate, endDate, reason } =
+    req.body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -39,7 +40,7 @@ app.post("/send-email", (req, res) => {
 
   // Setup email content
   const mailOptions = {
-    from: `"${userName}" <${process.env.EMAIL_USER}>`,
+    from: `"${userName}" <${process.env.EMAIL}>`,
     replyTo: userEmail,
     to: process.env.EMAIL,
     subject: "New Leave Request Submitted",
@@ -66,6 +67,47 @@ app.post("/send-email", (req, res) => {
     return res
       .status(200)
       .json({ success: true, message: "Email sent successfully" });
+  });
+});
+
+app.post("/send-response-email", (req, res) => {
+  const { userEmail, userName, leaveType, startDate, endDate, status } =
+    req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: `"HR Department" <${process.env.EMAIL}>`,
+    to: userEmail,
+    subject: `Your Leave Request (${leaveType}) has been ${status}`,
+    text: `Hello ${userName},
+
+          Your leave request has been reviewed.
+
+          Leave Type: ${leaveType}
+          From: ${startDate}
+          To: ${endDate}
+          Status: ${status}
+
+          Thank you,
+          Admin Department`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending response email:", error.message);
+      return res.status(500).json({ success: false, error: error.message });
+    }
+    console.log("Response email sent:", info.response);
+    return res
+      .status(200)
+      .json({ success: true, message: "Response email sent successfully" });
   });
 });
 

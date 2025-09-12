@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 router.post("/add", verifyUser, addLeave);
-router.put("/:id", verifyUser, updateLeave);
+router.put("/update/:id", verifyUser, updateLeave);
 router.get("/:id", verifyUser, getLeave);
 router.get("/", verifyUser, getLeaves);
 router.get("/detail/:id", verifyUser, getLeaveDetail);
