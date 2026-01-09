@@ -37,24 +37,24 @@ export default function Add() {
         }
       );
       if (response.data.success) {
-        alert("Leave added successfully");
-        //send notification
-        try {
-          const response1 = await axios.post(
-            `${import.meta.env.VITE_API_URL}/send-email`,
-            leave,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            }
-          );
-          if (response1.data.success) {
-            alert("Leave notification sent successfully");
-          }
-        } catch (notifyError) {
-          alert("Failed to send notification: ", notifyError);
-        }
+        // alert("Leave added successfully");
+        // //send notification
+        // try {
+        //   const response1 = await axios.post(
+        //     `${import.meta.env.VITE_API_URL}/send-email`,
+        //     leave,
+        //     {
+        //       headers: {
+        //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //       },
+        //     }
+        //   );
+        //   if (response1.data.success) {
+        //     alert("Leave notification sent successfully");
+        //   }
+        // } catch (notifyError) {
+        //   alert("Failed to send notification: ", notifyError);
+        // }
         navigate("/employee/dashboard/leaves");
       }
     } catch (error) {

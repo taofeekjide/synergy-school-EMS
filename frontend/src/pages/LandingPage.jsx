@@ -29,6 +29,27 @@ export default function LandingPage() {
       alert("Demo login failed. Please try again later.");
     }
   }
+  async function handleAdminLogin() {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          email: "admin@example.com",
+          password: "Admin123@",
+        }
+      );
+
+      if (response.data.success) {
+        login(response.data.user);
+        localStorage.setItem("token", response.data.token);
+
+        navigate("/admin/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Demo login failed. Please try again later.");
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-6">
@@ -54,6 +75,13 @@ export default function LandingPage() {
             className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
           >
             Try as Demo Employee
+          </button>
+          
+          <button
+            onClick={handleAdminLogin}
+            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
+          >
+            Login as Admin
           </button>
         </div>
       </div>
