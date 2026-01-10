@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/authContext";
 
 export default function LandingPage() {
   const navigate = useNavigate();
-
   const { login } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(false);
+
   async function handleDemoLogin() {
+    setLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -21,15 +23,18 @@ export default function LandingPage() {
       if (response.data.success) {
         login(response.data.user);
         localStorage.setItem("token", response.data.token);
-
         navigate("/employee/dashboard");
       }
     } catch (error) {
       console.log(error);
       alert("Demo login failed. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   }
+
   async function handleAdminLogin() {
+    setLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -42,12 +47,13 @@ export default function LandingPage() {
       if (response.data.success) {
         login(response.data.user);
         localStorage.setItem("token", response.data.token);
-
         navigate("/admin/dashboard");
       }
     } catch (error) {
       console.log(error);
-      alert("Demo login failed. Please try again later.");
+      alert("Admin login failed. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -64,24 +70,42 @@ export default function LandingPage() {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
+            disabled={loading}
             onClick={() => navigate("/login")}
-            className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition-all w-full sm:w-auto whitespace-nowrap"
+            className={`px-6 py-3 rounded-xl shadow-md transition-all w-full sm:w-auto whitespace-nowrap
+              ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700 text-white"
+              }`}
           >
             Login (Employees Only)
           </button>
 
           <button
+            disabled={loading}
             onClick={handleDemoLogin}
-            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
+            className={`px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap
+              ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700 text-white"
+              }`}
           >
-            Try as Demo Employee
+            {loading ? "Logging in..." : "Try as Demo Employee"}
           </button>
-          
+
           <button
+            disabled={loading}
             onClick={handleAdminLogin}
-            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap"
+            className={`px-5 py-2 rounded-xl transition-all shadow w-full sm:w-auto whitespace-nowrap
+              ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700 text-white"
+              }`}
           >
-            Login as Admin
+            {loading ? "Logging in..." : "Login as Admin"}
           </button>
         </div>
       </div>
